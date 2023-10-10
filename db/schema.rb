@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_10_10_222021) do
+ActiveRecord::Schema[7.0].define(version: 2023_10_10_224352) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -92,12 +92,14 @@ ActiveRecord::Schema[7.0].define(version: 2023_10_10_222021) do
     t.string "name"
     t.string "email"
     t.string "phone"
-    t.string "password"
     t.bigint "role_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "password_digest"
+    t.string "token"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["role_id"], name: "index_users_on_role_id"
+    t.index ["token"], name: "index_users_on_token", unique: true
   end
 
   add_foreign_key "properties", "property_types"

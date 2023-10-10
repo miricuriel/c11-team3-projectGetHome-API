@@ -1,4 +1,7 @@
 class User < ApplicationRecord
+  has_secure_password 
+  has_secure_token
+
   belongs_to :role
   has_many :property_users
   has_many :properties, through: :property_users
@@ -12,5 +15,16 @@ class User < ApplicationRecord
   validates :email, uniqueness: true,
                     presence: true,
                     format: { with: URI::MailTo::EMAIL_REGEXP, message: "is invalid" }
-  
+
+  def invalidate_token
+    update(token: nil)
+  end
+
+  def self.authenticate(email, password)
+    user = User.find_by(email:)
+    return false unless user&.authenticate(password)
+
+    user.regenerate_token
+    user
+  end
 end
