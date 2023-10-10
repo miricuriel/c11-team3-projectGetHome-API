@@ -6,4 +6,11 @@ class User < ApplicationRecord
   has_many :property_sale, through: :user_property_sales
   has_many :user_property_rents
   has_many :property_rent, through: :user_property_rents
+
+  # Validaciones
+  validates :name, presence: true
+  validates :email, uniqueness: true,
+                    presence: true,
+                    format: { with: URI::MailTo::EMAIL_REGEXP, message: "is invalid" }
+  
 end

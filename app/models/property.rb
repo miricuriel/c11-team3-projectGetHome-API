@@ -4,4 +4,8 @@ class Property < ApplicationRecord
   has_one :property_rent
   has_many :property_users
   has_many :users, through: :property_users
+
+  # Validaciones
+  validates :photos, presence: true
+  validates :address, presence: true
 end
