@@ -1,4 +1,4 @@
 class UserPropertySale < ApplicationRecord
   belongs_to :user
-  belongs_to :property_sale
+  has_and_belong_to_many :property_sales
 end
