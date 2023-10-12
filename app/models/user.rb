@@ -1,6 +1,6 @@
 class User < ApplicationRecord
-  has_secure_password 
   has_secure_token
+  has_secure_password 
 
   belongs_to :role
   has_many :property_users
@@ -11,17 +11,21 @@ class User < ApplicationRecord
   has_many :property_rent, through: :user_property_rents
 
   # Validaciones
-  validates :name, presence: true
+  validates :name, presence: true, on: :update, allow_nil: true
   validates :email, uniqueness: true,
                     presence: true,
                     format: { with: URI::MailTo::EMAIL_REGEXP, message: "is invalid" }
+
+  def as_json(options = {})
+    super(options.merge(except: [:password_digest]))
+  end
 
   def invalidate_token
     update(token: nil)
   end
 
   def self.authenticate(email, password)
-    user = User.find_by(email:)
+    user = User.find_by(email: email)
     return false unless user&.authenticate(password)
 
     user.regenerate_token

@@ -6,6 +6,7 @@ class Property < ApplicationRecord
   has_many :users, through: :property_users
 
   # Validaciones
-  validates :photos, presence: true
+  # validates :photos, presence: true
   validates :address, presence: true
+  validates :operation_type, inclusion: { in: ["sale", "rent"] }
 end
