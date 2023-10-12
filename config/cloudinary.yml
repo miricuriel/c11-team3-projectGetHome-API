@@ -1,0 +1,11 @@
+development:
+  cloud_name: "dvxvdktvr"
+  api_key: "421427415646992"
+  api_secret: "EtceTvaTBv7keUTHCuhXWrm6nHA"
+  enhance_image_tag: true
+
+production:
+  cloud_name: "dvxvdktvr"
+  api_key: "421427415646992"
+  api_secret: "EtceTvaTBv7keUTHCuhXWrm6nHA"
+  enhance_image_tag: true
