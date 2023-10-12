@@ -8,7 +8,7 @@ class ApplicationController < ActionController::API
   end
 
   def current_user
-    @current_user || authenticate_token
+    @current_user ||= authenticate_token
   end
 
   def render_unauthorized(error_message)

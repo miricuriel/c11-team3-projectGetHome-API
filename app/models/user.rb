@@ -25,6 +25,10 @@ class User < ApplicationRecord
     update(token: nil)
   end
 
+  def update_token
+    regenerate_token
+  end
+
   def self.authenticate(email, password)
     user = User.find_by(email: email)
     return false unless user&.authenticate(password)
