@@ -8,7 +8,7 @@ class ApplicationController < ActionController::API
   end
 
   def current_user
-    @current_user ||= authenticate_token
+    @current_user || authenticate_token
   end
 
   def render_unauthorized(error_message)
@@ -18,7 +18,7 @@ class ApplicationController < ActionController::API
   private
 
   def authenticate_token
-    authenticate_with_http_token do |token, _options|
+    authenticate_or_request_with_http_token do |token, _options|
       User.where(token: token).first
     end
   end

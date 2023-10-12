@@ -21,6 +21,7 @@ class User < ApplicationRecord
   end
 
   def invalidate_token
+    puts token
     update(token: nil)
   end
 
