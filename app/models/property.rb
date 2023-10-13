@@ -1,6 +1,9 @@
 class Property < ApplicationRecord
   has_one :user_property_sale
-  has_one :user, through: :user_property_sale
+  has_one :user_sale, through: :user_property_sale, source: :user
+
+  has_one :user_property_rent
+  has_one :user_rent, through: :user_property_rent, source: :user
 
   # Validaciones
   # validates :photos, presence: true
