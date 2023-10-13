@@ -53,3 +53,5 @@ propiedad_604 = Property.create(address: "Av. Jesus Maria", property_type: 0, op
 propiedad_rent_604.property = propiedad_604
 propiedad_rent_604.save
 
+# p propiedad_rent_604.errors.full_messages
+

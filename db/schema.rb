@@ -18,12 +18,18 @@ ActiveRecord::Schema[7.0].define(version: 2023_10_13_023733) do
     t.string "operation_type"
     t.string "address"
     t.integer "property_type"
-    t.integer "bedroom"
-    t.integer "bathroom"
-    t.integer "area"
+    t.integer "bedrooms", default: 0
+    t.integer "bathrooms", default: 0
+    t.integer "area", default: 0
     t.text "description"
     t.string "photo_url"
-    t.boolean "active"
+    t.boolean "active", default: true
+    t.integer "price", default: 0
+    t.integer "monthly_rent", default: 0
+    t.integer "maintenance", default: 0
+    t.boolean "pets_allowed", default: false
+    t.string "latitud"
+    t.string "longitud"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
