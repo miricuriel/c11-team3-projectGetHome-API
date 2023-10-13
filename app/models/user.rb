@@ -9,8 +9,17 @@ class User < ApplicationRecord
   # has_many :user_property_rents
   # has_many :property_rent, through: :user_property_rents
 
-  has_many :user_property_sales
-  has_many :user_property_rents
+  # SALE
+  has_many :user_property_sale
+  #para que no cause conflicto con el de abajo
+  has_many :properties_sale, through: :user_property_sale, source: :property
+
+  #RENT
+  has_many :user_property_rent
+  has_many :properties_rent, through: :user_property_rent, source: :property
+
+
+ 
   has_many :property_users
   has_many :properties, through: :property_users
 
