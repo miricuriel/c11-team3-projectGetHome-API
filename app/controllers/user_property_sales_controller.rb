@@ -9,8 +9,8 @@ class UserPropertySalesController < ApplicationController
 
   def create
     property_for_sale = UserPropertySale.new(user: current_user)
-
     property = Property.new(property_params)
+    property.operation_type ="sale"
 
     if property.save
       property_for_sale.property = property
@@ -30,6 +30,6 @@ class UserPropertySalesController < ApplicationController
   private
   
   def property_params
-    params.permit(:address, :bedroom, :bathroom, :area, :description, :photos, :active, :operation_type, :property_type)
+    params.permit(:address, :bedrooms, :bathrooms, :area, :description, :photo_url, :price, :active,:operation_type, :property_type)
   end
 end

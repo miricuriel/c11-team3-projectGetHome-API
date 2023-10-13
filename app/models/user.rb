@@ -3,15 +3,15 @@ class User < ApplicationRecord
   has_secure_password 
 
   # SALE
-  has_many :user_property_sale
+  has_many :user_property_sale, dependent: :destroy
   #para que no cause conflicto con el de abajo
   has_many :properties_sale, through: :user_property_sale, source: :property
 
   #RENT
-  has_many :user_property_rent
+  has_many :user_property_rent, dependent: :destroy
   has_many :properties_rent, through: :user_property_rent, source: :property
  
-  has_many :property_users
+  has_many :property_users, dependent: :destroy
   has_many :properties, through: :property_users
 
   # Validaciones

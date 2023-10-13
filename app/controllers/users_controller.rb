@@ -23,6 +23,12 @@ class UsersController < ApplicationController
     end
   end
 
+  def show_properties
+    user_properties_sales = current_user.properties_sale
+    user_properties_rents = current_user.properties_rent
+    render json: user_properties_sales+user_properties_rents, status: :ok
+  end
+
   private
 
   def user_params

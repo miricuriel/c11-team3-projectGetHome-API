@@ -1,8 +1,28 @@
+
+# Importa la gema cloudinary
+require 'cloudinary'
+
 UserPropertyRent.destroy_all
 UserPropertySale.destroy_all
 Property.destroy_all
 User.destroy_all
 
+
+#credentiasl
+# Carga tus credenciales desde el archivo de configuración cloudinary.yml
+
+# Define un array para almacenar las URL de las imágenes
+image_urls = []
+
+# Cargar imágenes y almacenar las URL en el array
+image_paths = ['db/images/lonely_bird.png', 'db/images/lonely_bird.png', 'db/images/lonely_bird.png']
+
+image_paths.each do |image_path|
+  uploaded_image = Cloudinary::Uploader.upload(image_path)
+  if uploaded_image && uploaded_image['secure_url']
+    image_urls << uploaded_image['secure_url']
+  end
+end
 
 cristhian_owner = User.create(name: "Cristhian Owner", email: "cverah_owner@mail.com", password: "123456", phone: "928646027", role: 1)
 cristhian_home_seeker = User.create(name: "Cristhian Home", email: "cverah_home@mail.com", password: "123456", phone: "928646027", role: 0)
@@ -23,33 +43,33 @@ cristhian_home_seeker = User.create(name: "Cristhian Home", email: "cverah_home@
 # Crear un UserPropertySale con new
 #sale
 propiedad_sale_599 = UserPropertySale.new(user: cristhian_home_seeker)
-propiedad_599 = Property.create(address: "Av. las malvinas", property_type: 0, operation_type: "sale", photo_url:"https://res.cloudinary.com/dvxvdktvr/image/upload/v1697046792/d3h7lv5hnyq2ukk0ufyh.png")
+propiedad_599 = Property.create(address: "Av. las malvinas", property_type: 0, operation_type: "sale", photo_url:image_urls)
 propiedad_sale_599.property = propiedad_599
 propiedad_sale_599.save
 
 propiedad_sale_600 = UserPropertySale.new(user: cristhian_owner)
-propiedad_600= Property.create(address:"Av. peru", property_type:1, operation_type:"sale", photo_url:"https://res.cloudinary.com/dvxvdktvr/image/upload/v1697046792/d3h7lv5hnyq2ukk0ufyh.png");
+propiedad_600= Property.create(address:"Av. peru", property_type:1, operation_type:"sale", photo_url:image_urls);
 propiedad_sale_600.property = propiedad_600
 propiedad_sale_600.save
 
 propiedad_sale_601 = UserPropertySale.new(user: cristhian_owner)
-propiedad_601= Property.create(address:"Av. chalhuanca", property_type:1, operation_type:"sale", photo_url:"https://res.cloudinary.com/dvxvdktvr/image/upload/v1697046792/d3h7lv5hnyq2ukk0ufyh.png");
+propiedad_601= Property.create(address:"Av. chalhuanca", property_type:1, operation_type:"sale", photo_url:image_urls);
 propiedad_sale_601.property = propiedad_601
 propiedad_sale_601.save
 
 #rent
 propiedad_rent_602 = UserPropertyRent.new(user: cristhian_home_seeker)
-propiedad_602 = Property.create(address: "Av. tamburco", property_type: 0, operation_type: "rent", photo_url:"https://res.cloudinary.com/dvxvdktvr/image/upload/v1697046792/d3h7lv5hnyq2ukk0ufyh.png")
+propiedad_602 = Property.create(address: "Av. tamburco", property_type: 0, operation_type: "rent", photo_url:image_urls)
 propiedad_rent_602.property = propiedad_602
 propiedad_rent_602.save
 
 propiedad_rent_603 = UserPropertyRent.new(user: cristhian_owner)
-propiedad_603 = Property.create(address: "Av. Maucacalle", property_type: 0, operation_type: "rent", photo_url:"https://res.cloudinary.com/dvxvdktvr/image/upload/v1697046792/d3h7lv5hnyq2ukk0ufyh.png")
+propiedad_603 = Property.create(address: "Av. Maucacalle", property_type: 0, operation_type: "rent", photo_url:image_urls)
 propiedad_rent_603.property = propiedad_603
 propiedad_rent_603.save
 
 propiedad_rent_604 = UserPropertyRent.new(user: cristhian_owner)
-propiedad_604 = Property.create(address: "Av. Jesus Maria", property_type: 0, operation_type: "rent", photo_url:"https://res.cloudinary.com/dvxvdktvr/image/upload/v1697046792/d3h7lv5hnyq2ukk0ufyh.png")
+propiedad_604 = Property.create(address: "Av. Jesus Maria", property_type: 0, operation_type: "rent", photo_url:image_urls)
 propiedad_rent_604.property = propiedad_604
 propiedad_rent_604.save
 

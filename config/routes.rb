@@ -1,7 +1,17 @@
 Rails.application.routes.draw do
+
+  resources :properties
+  resources :user_property_sales, only: %i[index create]
+  resources :user_property_rents, only: %i[index create]
+
+  resources :users, only: :create do
+    resources :property_users, only: [:show, :create, :index]
+  end
   
   post "/signup", to: "users#create"
+
   get "/profile", to: "users#show"
+  get "/show_properties", to: "users#show_properties"
   patch "/profile", to: "users#update"
   
   get "/properties", to: "properties#index"
