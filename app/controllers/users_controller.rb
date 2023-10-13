@@ -12,7 +12,6 @@ class UsersController < ApplicationController
   end
 
   def show
-    p "INgreso a show"
     render json: current_user
   end
 
@@ -22,6 +21,12 @@ class UsersController < ApplicationController
     else
       render json: { errors: current_user.errors }, status: :unprocessable_entity
     end
+  end
+
+  def show_properties
+    user_properties_sales = current_user.properties_sale
+    user_properties_rents = current_user.properties_rent
+    render json: user_properties_sales+user_properties_rents, status: :ok
   end
 
   private

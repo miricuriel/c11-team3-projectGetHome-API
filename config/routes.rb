@@ -4,12 +4,15 @@ Rails.application.routes.draw do
   # Defines the root path route ("/")
   # root "articles#index"
   resources :properties
-  resources :user_property_sales
+  resources :user_property_sales, only: %i[index create]
+  resources :user_property_rents, only: %i[index create]
+
 
   resources :users, only: :create do
     resources :property_users, only: [:show, :create, :index]
   end
   get "/profile", to: "users#show"
+  get "/show_properties", to: "users#show_properties"
   patch "/profile", to: "users#update"
 
   # resources :users do

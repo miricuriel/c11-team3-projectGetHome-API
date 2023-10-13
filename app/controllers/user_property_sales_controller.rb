@@ -8,18 +8,11 @@ class UserPropertySalesController < ApplicationController
   end
 
   def create
-    p "create"
-    # propiedad_sale_601 = UserPropertySale.new(user: cristhian_owner)
-    # propiedad_601= Property.create(address:"Av. chalhuanca", property_type:1, operation_type:"sale", photo_url:"https://res.cloudinary.com/dvxvdktvr/image/upload/v1697046792/d3h7lv5hnyq2ukk0ufyh.png");
-    # propiedad_sale_601.property = propiedad_601
-    # propiedad_sale_601.save
-
-
-    p property_params
 
     property_for_sale=UserPropertySale.new(user: current_user)
 
     property = Property.new(property_params)
+    property.operation_type ="sale"
 
     if property.save
       property_for_sale.property=property
@@ -43,6 +36,6 @@ class UserPropertySalesController < ApplicationController
   #   @property_sale = UserPropertySale.find(params[:id])
   # end
   def property_params
-    params.permit(:address, :bedroom, :bathroom, :area, :description, :photos, :active, :operation_type, :property_type)
+    params.permit(:address, :bedrooms, :bathrooms, :area, :description, :photo_url, :price, :active,:operation_type, :property_type)
   end
 end
