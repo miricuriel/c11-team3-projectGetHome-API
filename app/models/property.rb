@@ -1,12 +1,8 @@
 class Property < ApplicationRecord
-  belongs_to :property_type
-  has_one :property_sale
-  has_one :property_rent
-  has_many :property_users
-  has_many :users, through: :property_users
 
   # Validaciones
   # validates :photos, presence: true
   validates :address, presence: true
   validates :operation_type, inclusion: { in: ["sale", "rent"] }
+  enum property_type: {"house": 0, "apartment": 1}
 end

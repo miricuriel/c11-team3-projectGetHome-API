@@ -3,7 +3,7 @@ class CreateProperties < ActiveRecord::Migration[7.0]
     create_table :properties do |t|
       t.string :operation_type
       t.string :address
-      t.references :property_type, null: false, foreign_key: true
+      t.string :property_type
       t.integer :bedroom
       t.integer :bathroom
       t.integer :area

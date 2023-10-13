@@ -2,13 +2,17 @@ class User < ApplicationRecord
   has_secure_token
   has_secure_password 
 
-  belongs_to :role
+  # has_many :property_users
+  # has_many :properties, through: :property_users
+  # has_many :user_property_sales
+  # has_many :property_sale, through: :user_property_sales
+  # has_many :user_property_rents
+  # has_many :property_rent, through: :user_property_rents
+
+  has_many :user_property_sales
+  has_many :user_property_rents
   has_many :property_users
   has_many :properties, through: :property_users
-  has_many :user_property_sales
-  has_many :property_sale, through: :user_property_sales
-  has_many :user_property_rents
-  has_many :property_rent, through: :user_property_rents
 
   # Validaciones
   validates :name, presence: true, on: :update, allow_nil: true
@@ -16,9 +20,8 @@ class User < ApplicationRecord
                     presence: true,
                     format: { with: URI::MailTo::EMAIL_REGEXP, message: "is invalid" }
 
-  def as_json(options = {})
-    super(options.merge(except: [:password_digest]))
-  end
+  enum role: { "home seeker": 0, owner: 1}
+
 
   def invalidate_token
     puts token

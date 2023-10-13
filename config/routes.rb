@@ -5,9 +5,15 @@ Rails.application.routes.draw do
   # root "articles#index"
   resources :properties
   
-  resources :users, only: :create
+  resources :users, only: :create do
+    resources :property_users, only: [:show, :create, :index]
+  end
   get "/profile", to: "users#show"
   patch "/profile", to: "users#update"
+
+  # resources :users do
+  #   resources :properties
+  # end
 
   # session routes
   post "/login", to: "sessions#create"

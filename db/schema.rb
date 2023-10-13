@@ -17,38 +17,13 @@ ActiveRecord::Schema[7.0].define(version: 2023_10_10_224352) do
   create_table "properties", force: :cascade do |t|
     t.string "operation_type"
     t.string "address"
-    t.bigint "property_type_id", null: false
+    t.string "property_type"
     t.integer "bedroom"
     t.integer "bathroom"
     t.integer "area"
     t.text "description"
     t.string "photo_url"
     t.boolean "active"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["property_type_id"], name: "index_properties_on_property_type_id"
-  end
-
-  create_table "property_rents", force: :cascade do |t|
-    t.bigint "property_id", null: false
-    t.integer "monthly_rent"
-    t.integer "maintenance"
-    t.boolean "pets_allowed"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["property_id"], name: "index_property_rents_on_property_id"
-  end
-
-  create_table "property_sales", force: :cascade do |t|
-    t.bigint "property_id", null: false
-    t.integer "price"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["property_id"], name: "index_property_sales_on_property_id"
-  end
-
-  create_table "property_types", force: :cascade do |t|
-    t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -64,27 +39,21 @@ ActiveRecord::Schema[7.0].define(version: 2023_10_10_224352) do
     t.index ["user_id"], name: "index_property_users_on_user_id"
   end
 
-  create_table "roles", force: :cascade do |t|
-    t.string "name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "user_property_rents", force: :cascade do |t|
     t.bigint "user_id", null: false
-    t.bigint "property_rent_id", null: false
+    t.bigint "property_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["property_rent_id"], name: "index_user_property_rents_on_property_rent_id"
+    t.index ["property_id"], name: "index_user_property_rents_on_property_id"
     t.index ["user_id"], name: "index_user_property_rents_on_user_id"
   end
 
   create_table "user_property_sales", force: :cascade do |t|
     t.bigint "user_id", null: false
-    t.bigint "property_sale_id", null: false
+    t.bigint "property_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["property_sale_id"], name: "index_user_property_sales_on_property_sale_id"
+    t.index ["property_id"], name: "index_user_property_sales_on_property_id"
     t.index ["user_id"], name: "index_user_property_sales_on_user_id"
   end
 
@@ -92,24 +61,19 @@ ActiveRecord::Schema[7.0].define(version: 2023_10_10_224352) do
     t.string "name"
     t.string "email"
     t.string "phone"
-    t.bigint "role_id", null: false
+    t.string "role"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "password_digest"
     t.string "token"
     t.index ["email"], name: "index_users_on_email", unique: true
-    t.index ["role_id"], name: "index_users_on_role_id"
     t.index ["token"], name: "index_users_on_token", unique: true
   end
 
-  add_foreign_key "properties", "property_types"
-  add_foreign_key "property_rents", "properties"
-  add_foreign_key "property_sales", "properties"
   add_foreign_key "property_users", "properties"
   add_foreign_key "property_users", "users"
-  add_foreign_key "user_property_rents", "property_rents"
+  add_foreign_key "user_property_rents", "properties"
   add_foreign_key "user_property_rents", "users"
-  add_foreign_key "user_property_sales", "property_sales"
+  add_foreign_key "user_property_sales", "properties"
   add_foreign_key "user_property_sales", "users"
-  add_foreign_key "users", "roles"
 end

@@ -1,9 +1,5 @@
 Property.destroy_all
 PropertyType.destroy_all
-Role.destroy_all
-
-owner = Role.create(name: "owner")
-home_seeker = Role.create(name: "home seeker")
 
 house = PropertyType.create(name: "house")
 apartment = PropertyType.create(name: "apartment")

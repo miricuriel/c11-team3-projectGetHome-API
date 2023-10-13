@@ -18,7 +18,7 @@ class ApplicationController < ActionController::API
   private
 
   def authenticate_token
-    authenticate_or_request_with_http_token do |token, _options|
+    authenticate_with_http_token do |token, _options|
       User.where(token: token).first
     end
   end
