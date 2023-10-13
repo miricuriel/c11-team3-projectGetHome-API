@@ -20,7 +20,10 @@ class User < ApplicationRecord
                     presence: true,
                     format: { with: URI::MailTo::EMAIL_REGEXP, message: "is invalid" }
 
-  enum role: { "home seeker": 0, owner: 1}
+  enum role: { home_seeker: 0, owner: 1 }
+  validates :role, presence: true
+
+
 
 
   def invalidate_token

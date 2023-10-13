@@ -12,6 +12,7 @@ class UsersController < ApplicationController
   end
 
   def show
+    p "INgreso a show"
     render json: current_user
   end
 
