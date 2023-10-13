@@ -1,4 +1,7 @@
 class UserPropertySale < ApplicationRecord
   belongs_to :user
-  has_many :properties
+  belongs_to :property
+  
+  # Validaciones
+  validates_uniqueness_of :property_id
 end
