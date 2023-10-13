@@ -1,22 +1,21 @@
 Rails.application.routes.draw do
-  # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
-
-  # Defines the root path route ("/")
-  # root "articles#index"
-  resources :properties
-  resources :user_property_sales
-
-  resources :users, only: :create do
-    resources :property_users, only: [:show, :create, :index]
-  end
+  
+  post "/signup", to: "users#create"
   get "/profile", to: "users#show"
   patch "/profile", to: "users#update"
+  
+  get "/properties", to: "properties#index"
+  get "/properties/:id", to: "properties#show"
+  
+  resources :users, only: [:show]  do
+    resources :properties, only: %i[update destroy show index]
 
-  # resources :users do
-  #   resources :properties
-  # end
+    resources :property_users
 
-  # session routes
+    resources :user_property_sales
+
+  end
+ 
   post "/login", to: "sessions#create"
   delete "/logout", to: "sessions#destroy" 
 end
