@@ -1,4 +1,5 @@
 class Property < ApplicationRecord
+
   serialize :photo_url, Array
   
   has_one :user_property_sale, dependent: :destroy

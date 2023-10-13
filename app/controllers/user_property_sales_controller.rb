@@ -8,17 +8,15 @@ class UserPropertySalesController < ApplicationController
   end
 
   def create
-
-    property_for_sale=UserPropertySale.new(user: current_user)
-
+    property_for_sale = UserPropertySale.new(user: current_user)
     property = Property.new(property_params)
     property.operation_type ="sale"
 
     if property.save
-      property_for_sale.property=property
+      property_for_sale.property = property
+
       if property_for_sale.save
         render json: property_for_sale, status: :created
-      
       else
         render json: { errors: property_for_sale.errors }, status: :unprocessable_entity
       end
@@ -26,15 +24,11 @@ class UserPropertySalesController < ApplicationController
     else
       render json: { errors: property.errors }, status: :unprocessable_entity
     end
-    # @user_properties_sale= current_user.user_property_sale
-    # render json:@user_properties_sale
+
   end
 
-
   private
-  # def set_property_sale
-  #   @property_sale = UserPropertySale.find(params[:id])
-  # end
+  
   def property_params
     params.permit(:address, :bedrooms, :bathrooms, :area, :description, :photo_url, :price, :active,:operation_type, :property_type)
   end
