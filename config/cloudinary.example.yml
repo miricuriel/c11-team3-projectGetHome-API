@@ -1,0 +1,11 @@
+development:
+  cloud_name: YOUR_NAME
+  api_key: YOUR_KEY
+  api_secret: YOUR_SECRET
+  enhance_image_tag: true
+
+production:
+  cloud_name: YOUR_NAME
+  api_key: YOUR_KEY
+  api_secret: YOUR_SECRET
+  enhance_image_tag: true
