@@ -7,7 +7,7 @@
 
 Rails.application.config.middleware.insert_before 0, Rack::Cors do
   allow do
-    origins 'https://getthathome-api.onrender.com/properties'  # Reemplaza esto con la URL de tu aplicación React
+    origins '*'  # Reemplaza esto con la URL de tu aplicación React
     resource '*', headers: :any, methods: [:get, :post, :put, :patch, :delete, :options]
   end
 end
