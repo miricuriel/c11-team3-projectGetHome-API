@@ -12,7 +12,7 @@ class Property < ApplicationRecord
   # validates :photos, presence: true
   validates :address, presence: true, allow_nil: true
   validates :operation_type, inclusion: { in: ["sale", "rent"] }
-  validates_uniqueness_of :user_property_sale, allow_nil: true
+
 
   enum property_type: {"house": 0, "apartment": 1}
 end
