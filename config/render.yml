@@ -1,10 +1,11 @@
 databases:
-  - name: postgres
-    ipAllowList: []
+  - name: get_that_home_buna
+    databaseName: get_that_home_buna
+    user: get_that_home_buna_user
 
 services:
   - type: web
-    name: rails
+    name: GetThatHome-api
     env: ruby
     buildCommand: "./bin/render-build.sh"
     startCommand: "bundle exec puma -C config/puma.rb"
@@ -13,5 +14,5 @@ services:
         sync: false
       - key: DATABASE_URL
         fromDataBase:
-          name: postgres
+          name: get_that_home_buna
           property: connectionString
