@@ -81,6 +81,6 @@ test:
 production:
   <<: *default
   url: <%= ENV["DATABASE_URL"] %>
-  database: api_get_home_production
-  username: api_get_home
-  password: <%= ENV["API_GET_HOME_DATABASE_PASSWORD"] %>
+  # database: api_get_home_production
+  # username: api_get_home
+  # password: <%= ENV["API_GET_HOME_DATABASE_PASSWORD"] %>
