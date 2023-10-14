@@ -16,6 +16,8 @@ class UsersController < ApplicationController
   end
 
   def update
+    p "ingreso a update"
+    p current_user
     if current_user.update(user_params)
       render json: current_user, status: :ok
     else

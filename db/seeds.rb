@@ -9,8 +9,12 @@ User.destroy_all
 
 
 #credentiasl
-# Carga tus credenciales desde el archivo de configuración cloudinary.yml
-
+# # Carga tus credenciales desde el archivo de configuración cloudinary.yml
+# Cloudinary.config do |config|
+#   config.cloud_name = "dltt0ruzt"
+#   config.api_key = "654868775666857"
+#   config.api_secret =  "aanP_GGpvvrlU10krq8_zRKh_4U"
+# end
 # Define un array para almacenar las URL de las imágenes
 image_urls = []
 
