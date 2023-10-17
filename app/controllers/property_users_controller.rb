@@ -39,23 +39,23 @@ class PropertyUsersController < ApplicationController
   end
 
   def update
-    prop = PropertyUser.find_by(id: params[:id])
-    current_prop = prop.property_id
-    property = Property.find(current_prop)
+    # prop = PropertyUser.find_by(id: params[:id])
+    # current_prop = prop.property_id
+    # property = Property.find(current_prop)
 
-    updated = prop.update(user: current_user, property: property, favorite: params[:favorite], contacted: params[:contacted])
+    # updated = prop.update(user: current_user, property: property, favorite: params[:favorite], contacted: params[:contacted])
 
-    if updated
-      render json: prop, status: :ok
-    else
-      render json: { errors: updated.errors }, status: :unprocessable_entity
-    end
+    # if updated
+    #   render json: prop, status: :ok
+    # else
+    #   render json: { errors: updated.errors }, status: :unprocessable_entity
+    # end
     
   end
 
   def destroy
-    property = PropertyUser.find_by(id: params[:id])
-    property.destroy 
+    # property = PropertyUser.find_by(id: params[:id])
+    # property.destroy 
   end
   
 end
