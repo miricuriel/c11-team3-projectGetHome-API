@@ -1,20 +1,21 @@
 class PropertyUsersController < ApplicationController
 
-  def index
-    properties = current_user.property_users
-    if properties
-      render json: properties, status: :ok
-    else
-      render json: {"error": "Not found"}, status: :not_found
-    end
-  end
+  # def index
+  #   properties = current_user.save_properties
+
+  #   render json: properties, status: :ok
+  #   properties = current_user.property_users
+  #   render json: properties
+  # end
 
   def show
-    property = PropertyUser.find_by(id: params[:id])
-    if property
-      render json: property, status: :ok
+    current_saved = current_user.save_properties
+    prop = current_saved.find_by(id: params[:id])
+
+    if prop.nil?
+      render json: { message: "Propery not found" }, status: :unprocessable_entity
     else
-      render json: {"error": "Not found"}, status: :not_found
+      render json: prop
     end
   end
 

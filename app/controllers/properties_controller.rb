@@ -30,9 +30,6 @@ class PropertiesController < ApplicationController
   end
 
   def destroy
-    properties = UserPropertyRent.where(user: current_user).map { |prop| Property.where(id: prop.property) }
-    properties += UserPropertySale.where(user: current_user).map { |prop| Property.where(id: prop.property) }
-    properties = properties.flatten.map(&:as_json)
     property = Property.find(params[:id])
 
     property.destroy 

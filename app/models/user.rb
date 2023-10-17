@@ -12,7 +12,7 @@ class User < ApplicationRecord
   has_many :properties_rent, through: :user_property_rent, source: :property
  
   has_many :property_users, dependent: :destroy
-  has_many :properties, through: :property_users
+  has_many :save_properties, through: :property_users, source: :property
 
   # Validaciones
   validates :name, presence: true, on: :update, allow_nil: true
