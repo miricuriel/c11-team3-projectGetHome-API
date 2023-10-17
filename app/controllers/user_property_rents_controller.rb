@@ -33,6 +33,6 @@ class UserPropertyRentsController < ApplicationController
   #   @property_sale = UserPropertySale.find(params[:id])
   # end
   def property_params
-    params.permit(:address, :bedrooms, :bathrooms, :area, :description, :photo_url,:monthly_rent,:maintenance,:pets_allowed ,:active, :operation_type, :property_type)
+    params.permit(:address, :bedrooms, :bathrooms, :area, :description,:monthly_rent,:maintenance,:pets_allowed ,:active, :operation_type, :property_type, photo_url: [])
   end
 end

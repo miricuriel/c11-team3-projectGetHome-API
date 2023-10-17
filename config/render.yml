@@ -1,0 +1,18 @@
+databases:
+  - name: get_that_home_buna
+    databaseName: get_that_home_buna
+    user: get_that_home_buna_user
+
+services:
+  - type: web
+    name: GetThatHome-api
+    env: ruby
+    buildCommand: "./bin/render-build.sh"
+    startCommand: "bundle exec puma -C config/puma.rb"
+    envVars:
+      - key: RAILS_MASTER_KEY
+        sync: false
+      - key: DATABASE_URL
+        fromDataBase:
+          name: get_that_home_buna
+          property: connectionString

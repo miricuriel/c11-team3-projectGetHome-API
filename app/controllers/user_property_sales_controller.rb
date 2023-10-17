@@ -30,6 +30,6 @@ class UserPropertySalesController < ApplicationController
   private
   
   def property_params
-    params.permit(:address, :bedrooms, :bathrooms, :area, :description, :photo_url, :price, :active,:operation_type, :property_type)
+    params.permit(:address, :bedrooms, :bathrooms, :area, :description, :price, :active,:operation_type, :property_type, photo_url: [])
   end
 end
