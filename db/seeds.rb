@@ -1,4 +1,4 @@
-require 'cloudinary'
+
 
 UserPropertyRent.destroy_all
 UserPropertySale.destroy_all
@@ -6,7 +6,6 @@ Property.destroy_all
 User.destroy_all
 
 test_owner = User.create(name: "Test Owner", email: "test_owner@mail.com", password: "123123", role: "owner", phone: "985644456")
-
 test_seeker = User.create(name: "Test HomeSeeker", email: "test_seeker@mail.com", password: "123123", role: "home_seeker", phone: "956231231")
 
 (1..10).times do |i|

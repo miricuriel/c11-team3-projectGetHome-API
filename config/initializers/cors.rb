@@ -7,10 +7,7 @@
 
 Rails.application.config.middleware.insert_before 0, Rack::Cors do
   allow do
-    origins "example.com"
-
-    resource "*",
-      headers: :any,
-      methods: [:get, :post, :put, :patch, :delete, :options, :head]
+    origins '*'  # Reemplaza esto con la URL de tu aplicación React
+    resource '*', headers: :any, methods: [:get, :post, :put, :patch, :delete, :options]
   end
 end
