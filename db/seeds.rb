@@ -24,12 +24,12 @@ test_seeker = User.create(name: "Test HomeSeeker", email: "test_seeker@mail.com"
   end
 
   # Properties for rent
-  property_rent = Property.create(address: Faker::Address.full_address, bedrooms: number_random, bathrooms: number_random, area: Faker::Number.between(from: 50, to: 500), description: Faker::Lorem.paragraph, monthly_rent: Faker::Number.between(from: 500, to: 3000), maintenance: Faker::Number.between(from: 200, to: 500), pets_allowed: Faker::Boolean.boolean, operation_type: "rent", property_type: property_type, photo_url: rent_photo )
+  property_rent = Property.create(address: Faker::Address.full_address, bedrooms: number_random, bathrooms: number_random, area: Faker::Number.between(from: 50, to: 500), description: Faker::Lorem.paragraph, monthly_rent: Faker::Number.between(from: 500, to: 3000), maintenance: Faker::Number.between(from: 200, to: 500), pets_allowed: Faker::Boolean.boolean, operation_type: "rent", property_type: property_type, photo_url: rent_photo, latitud: Faker::Address.latitude, longitud: Faker::Address.longitude )
   rent.property = property_rent
   rent.save
 
   # Properties for sale
-  property_sale = Property.create(address: Faker::Address.full_address, bedrooms: number_random, bathrooms: number_random, area: Faker::Number.between(from: 50, to: 500), description: Faker::Lorem.paragraph, price: Faker::Number.between(from: 50000, to: 150000), active: Faker::Boolean.boolean, operation_type: "sale", property_type: property_type, photo_url: sale_photo)
+  property_sale = Property.create(address: Faker::Address.full_address, bedrooms: number_random, bathrooms: number_random, area: Faker::Number.between(from: 50, to: 500), description: Faker::Lorem.paragraph, price: Faker::Number.between(from: 50000, to: 150000), active: Faker::Boolean.boolean, operation_type: "sale", property_type: property_type, photo_url: sale_photo, latitud: Faker::Address.latitude, longitud: Faker::Address.longitude)
   sale.property = property_sale
   sale.save
 
