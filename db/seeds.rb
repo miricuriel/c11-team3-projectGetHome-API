@@ -11,7 +11,7 @@ test_seeker = User.create(name: "Test HomeSeeker", email: "test_seeker@mail.com"
   number_random = Faker::Number.between(from: 1, to: 5)
   rent = UserPropertyRent.new(user: test_owner)
   sale = UserPropertySale.new(user: test_owner)
-
+ 
   rent_photo = []
   sale_photo = []
 
