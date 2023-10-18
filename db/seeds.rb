@@ -15,11 +15,17 @@ test_seeker = User.create(name: "Test HomeSeeker", email: "test_seeker@mail.com"
   rent_photo = []
   sale_photo = []
 
-  3.times do
+  2.times do
     search_photos = Unsplash::Photo.search("house")
     random_photo = search_photos.sample
     file = random_photo.urls["regular"]
     rent_photo << file
+  end
+
+  2.times do
+    search_photos = Unsplash::Photo.search("department")
+    random_photo = search_photos.sample
+    file = random_photo.urls["regular"]
     sale_photo << file
   end
 
