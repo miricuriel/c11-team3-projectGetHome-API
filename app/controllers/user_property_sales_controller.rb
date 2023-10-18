@@ -1,6 +1,4 @@
 class UserPropertySalesController < ApplicationController
-  # before_action :set_property_sale, only: %i[ show update destroy ]
-  # before_action :set_property_sale
  
   def index
     user_properties_sale= current_user.user_property_sale
@@ -30,6 +28,6 @@ class UserPropertySalesController < ApplicationController
   private
   
   def property_params
-    params.permit(:address, :bedrooms, :bathrooms, :area, :description, :photo_url, :price, :active,:operation_type, :property_type)
+    params.permit(:address, :bedrooms, :bathrooms, :area, :description, :price, :active,:operation_type, :property_type, :latitud, :longitud, photo_url: [])
   end
 end
