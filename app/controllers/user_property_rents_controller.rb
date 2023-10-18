@@ -1,6 +1,4 @@
 class UserPropertyRentsController < ApplicationController
-  # before_action :set_property_sale, only: %i[ show update destroy ]
-  # before_action :set_property_sale
  
   def index
     user_properties_rent= current_user.user_property_rent
@@ -27,12 +25,9 @@ class UserPropertyRentsController < ApplicationController
     end
   end
 
-
   private
-  # def set_property_sale
-  #   @property_sale = UserPropertySale.find(params[:id])
-  # end
+
   def property_params
-    params.permit(:address, :bedrooms, :bathrooms, :area, :description,:monthly_rent,:maintenance,:pets_allowed ,:active, :operation_type, :property_type, photo_url: [])
+    params.permit(:address, :bedrooms, :bathrooms, :area, :description,:monthly_rent,:maintenance,:pets_allowed ,:active, :operation_type, :property_type, :latitud, :longitud, photo_url: [])
   end
 end
