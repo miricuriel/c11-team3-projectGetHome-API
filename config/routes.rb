@@ -1,7 +1,9 @@
 Rails.application.routes.draw do
 
   resources :user_property_sales, only: %i[index create]
+  get "/user/:user_id/property_sale/:property_id", to: "user_property_sales#showUserProperty"
   resources :user_property_rents, only: %i[index create]
+  get "/user/:user_id/property_rent/:property_id", to: "user_property_rents#showUserProperty"
 
   post "/signup", to: "users#create"
 

@@ -25,6 +25,16 @@ class UserPropertySalesController < ApplicationController
 
   end
 
+  def showUserProperty
+    user_property_sale = UserPropertySale.find_by(user_id: params[:user_id], property_id: params[:property_id]);
+  
+    if user_property_sale
+      render json: user_property_sale, status: :ok
+    else
+      render json: {"message": "UserPropertySale not found"}, status: :not_found
+    end
+  end
+
   private
   
   def property_params

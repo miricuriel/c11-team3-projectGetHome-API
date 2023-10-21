@@ -25,6 +25,18 @@ class UserPropertyRentsController < ApplicationController
     end
   end
 
+  def showUserProperty
+   
+    user_property_rent = UserPropertyRent.find_by(user_id: params[:user_id], property_id: params[:property_id]);
+  
+    if user_property_rent
+      render json: user_property_rent, status: :ok
+    else
+      render json: {"message": "User Property Rent not found"}, status: :not_found
+    end
+  end
+
+
   private
 
   def property_params
