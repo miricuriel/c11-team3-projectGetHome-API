@@ -63,11 +63,10 @@ class PropertyUsersController < ApplicationController
   end
 
   def update
+  
     prop = PropertyUser.find_by(id: params[:id])
-    current_prop = prop.property_id
-    property = Property.find(current_prop)
 
-    updated = prop.update(user: current_user, property: property, favorite: params[:favorite], contacted: params[:contacted])
+    updated = prop.update( propertyuser_params)
 
     if updated
       render json: prop, status: :ok
@@ -80,6 +79,10 @@ class PropertyUsersController < ApplicationController
   def destroy
     property = PropertyUser.find_by(id: params[:id])
     property.destroy 
+  end
+
+  def propertyuser_params
+    params.permit( :contacted, :favorite)
   end
   
 end
