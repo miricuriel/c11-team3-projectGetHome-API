@@ -25,4 +25,9 @@ Rails.application.routes.draw do
  
   post "/login", to: "sessions#create"
   delete "/logout", to: "sessions#destroy" 
+
+  #propertiesuser
+  get "/user/:user_id/property_user/:property_id", to: "property_users#checkout"
+  get "/property_id/:property_id", to: "property_users#showUser"
+
 end

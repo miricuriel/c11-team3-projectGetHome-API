@@ -19,6 +19,29 @@ class PropertyUsersController < ApplicationController
     end
   end
 
+  def checkout
+   
+    property_user= PropertyUser.find_by(user_id:params[:user_id], property_id:params[:property_id])
+    
+      render json: property_user, status: :created
+   
+  end
+
+  def showUser
+   
+    property = Property.find_by(id: params[:property_id])
+    if property
+      if(property.operation_type=="sale")
+        render json: property.user_sale, status: :created
+      end
+      if(property.operation_type=="rent")
+        render json: property.user_rent, status: :created
+      end
+    else
+      render json: { errors:property.errors }, status: :unprocessable_entity
+    end
+  end
+
   def create
     property = Property.find(params[:property_id])
 
