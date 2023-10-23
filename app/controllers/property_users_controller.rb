@@ -1,20 +1,44 @@
 class PropertyUsersController < ApplicationController
 
-  def index
-    properties = current_user.property_users
-    if properties
-      render json: properties, status: :ok
+  # def index
+  #   properties = current_user.save_properties
+
+  #   render json: properties, status: :ok
+  #   properties = current_user.property_users
+  #   render json: properties
+  # end
+
+  def show
+    current_saved = current_user.save_properties
+    prop = current_saved.find_by(id: params[:id])
+
+    if prop.nil?
+      render json: { message: "Propery not found" }, status: :unprocessable_entity
     else
-      render json: {"error": "Not found"}, status: :not_found
+      render json: prop
     end
   end
 
-  def show
-    property = PropertyUser.find_by(id: params[:id])
+  def checkout
+   
+    property_user= PropertyUser.find_by(user_id:params[:user_id], property_id:params[:property_id])
+    
+      render json: property_user, status: :created
+   
+  end
+
+  def showUser
+   
+    property = Property.find_by(id: params[:property_id])
     if property
-      render json: property, status: :ok
+      if(property.operation_type=="sale")
+        render json: property.user_sale, status: :created
+      end
+      if(property.operation_type=="rent")
+        render json: property.user_rent, status: :created
+      end
     else
-      render json: {"error": "Not found"}, status: :not_found
+      render json: { errors:property.errors }, status: :unprocessable_entity
     end
   end
 
@@ -39,11 +63,10 @@ class PropertyUsersController < ApplicationController
   end
 
   def update
+  
     prop = PropertyUser.find_by(id: params[:id])
-    current_prop = prop.property_id
-    property = Property.find(current_prop)
 
-    updated = prop.update(user: current_user, property: property, favorite: params[:favorite], contacted: params[:contacted])
+    updated = prop.update( propertyuser_params)
 
     if updated
       render json: prop, status: :ok
@@ -56,6 +79,10 @@ class PropertyUsersController < ApplicationController
   def destroy
     property = PropertyUser.find_by(id: params[:id])
     property.destroy 
+  end
+
+  def propertyuser_params
+    params.permit( :contacted, :favorite)
   end
   
 end

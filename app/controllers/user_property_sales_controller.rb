@@ -1,6 +1,4 @@
 class UserPropertySalesController < ApplicationController
-  # before_action :set_property_sale, only: %i[ show update destroy ]
-  # before_action :set_property_sale
  
   def index
     user_properties_sale= current_user.user_property_sale
@@ -27,9 +25,19 @@ class UserPropertySalesController < ApplicationController
 
   end
 
+  def showUserProperty
+    user_property_sale = UserPropertySale.find_by(user_id: params[:user_id], property_id: params[:property_id]);
+  
+    if user_property_sale
+      render json: user_property_sale, status: :ok
+    else
+      render json: {"message": "UserPropertySale not found"}, status: :not_found
+    end
+  end
+
   private
   
   def property_params
-    params.permit(:address, :bedrooms, :bathrooms, :area, :description, :photo_url, :price, :active,:operation_type, :property_type)
+    params.permit(:address, :bedrooms, :bathrooms, :area, :description, :price, :active,:operation_type, :property_type, :latitud, :longitud, photo_url: [])
   end
 end

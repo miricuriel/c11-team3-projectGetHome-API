@@ -1,0 +1,11 @@
+development:
+  cloud_name: "dltt0ruzt"
+  api_key: "654868775666857"
+  api_secret: "aanP_GGpvvrlU10krq8_zRKh_4U"
+  enhance_image_tag: true
+
+production:
+  cloud_name: "dltt0ruzt"
+  api_key: "654868775666857"
+  api_secret: "aanP_GGpvvrlU10krq8_zRKh_4U"
+  enhance_image_tag: true
