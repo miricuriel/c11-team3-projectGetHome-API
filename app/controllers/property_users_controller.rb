@@ -19,6 +19,29 @@ class PropertyUsersController < ApplicationController
     end
   end
 
+  def checkout
+   
+    property_user= PropertyUser.find_by(user_id:params[:user_id], property_id:params[:property_id])
+    
+      render json: property_user, status: :created
+   
+  end
+
+  def showUser
+   
+    property = Property.find_by(id: params[:property_id])
+    if property
+      if(property.operation_type=="sale")
+        render json: property.user_sale, status: :created
+      end
+      if(property.operation_type=="rent")
+        render json: property.user_rent, status: :created
+      end
+    else
+      render json: { errors:property.errors }, status: :unprocessable_entity
+    end
+  end
+
   def create
     property = Property.find(params[:property_id])
 
@@ -40,11 +63,10 @@ class PropertyUsersController < ApplicationController
   end
 
   def update
+  
     prop = PropertyUser.find_by(id: params[:id])
-    current_prop = prop.property_id
-    property = Property.find(current_prop)
 
-    updated = prop.update(user: current_user, property: property, favorite: params[:favorite], contacted: params[:contacted])
+    updated = prop.update( propertyuser_params)
 
     if updated
       render json: prop, status: :ok
@@ -57,6 +79,10 @@ class PropertyUsersController < ApplicationController
   def destroy
     property = PropertyUser.find_by(id: params[:id])
     property.destroy 
+  end
+
+  def propertyuser_params
+    params.permit( :contacted, :favorite)
   end
   
 end

@@ -30,8 +30,8 @@ class PropertiesController < ApplicationController
   end
 
   def destroy
+    
     property = Property.find(params[:id])
-
     property.destroy 
   end
 
